@@ -1,0 +1,74 @@
+======================================================================
+STARTING EXPERIMENTAL PIPELINE: MULTI-RANK LORA EVALUATION
+======================================================================
+[*] Initializing Base Model: unsloth/llama-3-8b-Instruct...
+[*] Configuring 4-bit Quantization (BitsAndBytes NF4)...
+[*] Loading base model onto GPU...
+Loading weights: 100% 291/291 [01:17<00:00, 6.06it/s]
+
+======================================================================
+PRE-TUNING GLOBAL BASELINE
+======================================================================
+[*] Running Exact Match evaluation on 5 prompts...
+[*] Running Exact Match evaluation on 5 prompts...
+[>] Baseline Factual Recall: 40.00%
+[>] Baseline MMLU Benchmark: 80.00%
+
+======================================================================
+RUNNING EXPERIMENT FOR LoRA RANK: r=8
+======================================================================
+trainable params: 3,407,872 || all params: 8,033,669,120 || trainable%: 0.0424
+[20/20 00:15, Epoch 6/7]
+Step    Training Loss
+10      5.621428
+20      1.630583
+
+[*] Running Exact Match evaluation on 5 prompts...
+[*] Running Exact Match evaluation on 5 prompts...
+--------------------------------------------------
+RESULTS FOR r=8:
+  * Post-tuning Recall (Acc_new): 80.00%
+  * Post-tuning MMLU Score:      80.00%
+  * Forgetting Delta (F):         0.00 p.p.
+  * Trade-Off Index (TOI):       88.89
+--------------------------------------------------
+
+======================================================================
+RUNNING EXPERIMENT FOR LoRA RANK: r=16
+======================================================================
+trainable params: 6,815,744 || all params: 8,037,076,992 || trainable%: 0.0848
+[20/20 00:16, Epoch 6/7]
+Step    Training Loss
+10      4.942075
+20      0.491581
+
+[*] Running Exact Match evaluation on 5 prompts...
+[*] Running Exact Match evaluation on 5 prompts...
+--------------------------------------------------
+RESULTS FOR r=16:
+  * Post-tuning Recall (Acc_new): 100.00%
+  * Post-tuning MMLU Score:      80.00%
+  * Forgetting Delta (F):         0.00 p.p.
+  * Trade-Off Index (TOI):       100.00
+--------------------------------------------------
+
+======================================================================
+RUNNING EXPERIMENT FOR LoRA RANK: r=64
+======================================================================
+trainable params: 27,262,976 || all params: 8,057,524,224 || trainable%: 0.3384
+[20/20 00:15, Epoch 6/7]
+Step    Training Loss
+10      3.867653
+20      0.032122
+
+[*] Running Exact Match evaluation on 5 prompts...
+[*] Running Exact Match evaluation on 5 prompts...
+--------------------------------------------------
+RESULTS FOR r=64:
+  * Post-tuning Recall (Acc_new): 100.00%
+  * Post-tuning MMLU Score:      80.00%
+  * Forgetting Delta (F):         0.00 p.p.
+  * Trade-Off Index (TOI):       100.00
+--------------------------------------------------
+
+[V] ALL MULTI-RANK RUNS COMPLETED SUCCESSFULLY!
