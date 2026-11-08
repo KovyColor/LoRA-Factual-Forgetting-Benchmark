@@ -3,9 +3,7 @@
 
 **Course:** Research Methods and Tools (RMT) — Assignment #4  
 **Track:** Machine Learning / Deep Learning / AI Model Track  
-**Institution:** School of Software Engineering, Astana IT University  
-**Authors:** Zhanassyl Sherkenov, Assanali Yessenbekov  
-**Group:** SE-2416  
+
 
 ---
 
