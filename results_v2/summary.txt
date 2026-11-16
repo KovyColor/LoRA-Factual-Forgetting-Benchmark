@@ -1,0 +1,56 @@
+== Un-tuned baseline ==
+train_facts  4/10 = 40.0%  exact 95% CI [12.2, 73.8]
+paraphrase   5/10 = 50.0%  exact 95% CI [18.7, 81.3]
+mmlu         120/200 = 60.0%  exact 95% CI [52.9, 66.8]
+
+== Per rank: mean +- SD over seeds (95% t-CI) ==
+r8   | train_facts: 72.0+-4.5 (+-5.6) | paraphrase: 70.0+-0.0 (+-0.0) | mmlu: 62.1+-1.0 (+-1.2) | final loss 0.673+-0.157
+r16  | train_facts: 96.0+-8.9 (+-11.1) | paraphrase: 72.0+-4.5 (+-5.6) | mmlu: 62.0+-0.8 (+-1.0) | final loss 0.090+-0.056
+r32  | train_facts: 100.0+-0.0 (+-0.0) | paraphrase: 84.0+-5.5 (+-6.8) | mmlu: 61.0+-0.8 (+-1.0) | final loss 0.005+-0.002
+r64  | train_facts: 100.0+-0.0 (+-0.0) | paraphrase: 94.0+-5.5 (+-6.8) | mmlu: 60.4+-0.8 (+-1.0) | final loss 0.001+-0.000
+
+== Forgetting F = acc_base - acc_tuned on MMLU (pp), per rank, mean +- SD ==
+r8   F = -2.10 +- 0.96
+r16  F = -2.00 +- 0.79
+r32  F = -1.00 +- 0.79
+r64  F = -0.40 +- 0.82
+
+== Exact McNemar vs baseline on MMLU (paired items, per seed), BH-adjusted over all tests ==
+r8   seed 42: lost 0, gained 5, p = 0.0625, BH q = 0.6250
+r8   seed 43: lost 1, gained 8, p = 0.0391, BH q = 0.6250
+r8   seed 44: lost 1, gained 5, p = 0.2188, BH q = 0.9062
+r8   seed 45: lost 1, gained 3, p = 0.6250, BH q = 1.0000
+r8   seed 46: lost 2, gained 5, p = 0.4531, BH q = 1.0000
+r16  seed 42: lost 4, gained 8, p = 0.3877, BH q = 1.0000
+r16  seed 43: lost 5, gained 7, p = 0.7744, BH q = 1.0000
+r16  seed 44: lost 3, gained 6, p = 0.5078, BH q = 1.0000
+r16  seed 45: lost 3, gained 9, p = 0.1460, BH q = 0.9062
+r16  seed 46: lost 3, gained 8, p = 0.2266, BH q = 0.9062
+r32  seed 42: lost 7, gained 8, p = 1.0000, BH q = 1.0000
+r32  seed 43: lost 6, gained 9, p = 0.6072, BH q = 1.0000
+r32  seed 44: lost 8, gained 8, p = 1.0000, BH q = 1.0000
+r32  seed 45: lost 7, gained 11, p = 0.4807, BH q = 1.0000
+r32  seed 46: lost 5, gained 7, p = 0.7744, BH q = 1.0000
+r64  seed 42: lost 11, gained 11, p = 1.0000, BH q = 1.0000
+r64  seed 43: lost 12, gained 12, p = 1.0000, BH q = 1.0000
+r64  seed 44: lost 11, gained 10, p = 1.0000, BH q = 1.0000
+r64  seed 45: lost 10, gained 12, p = 0.8318, BH q = 1.0000
+r64  seed 46: lost 8, gained 11, p = 0.6476, BH q = 1.0000
+
+== Paired exact McNemar between ranks on train_facts + paraphrase (pooled items, per seed) ==
+seed 42: r8 vs r16: r8 only right 0, r16 only right 2, p = 0.5000
+seed 42: r16 vs r64: r16 only right 0, r64 only right 2, p = 0.5000
+seed 43: r8 vs r16: r8 only right 0, r16 only right 3, p = 0.2500
+seed 43: r16 vs r64: r16 only right 0, r64 only right 2, p = 0.5000
+seed 44: r8 vs r16: r8 only right 0, r16 only right 4, p = 0.1250
+seed 44: r16 vs r64: r16 only right 0, r64 only right 2, p = 0.5000
+seed 45: r8 vs r16: r8 only right 0, r16 only right 3, p = 0.2500
+seed 45: r16 vs r64: r16 only right 0, r64 only right 3, p = 0.2500
+seed 46: r8 vs r16: r8 only right 0, r16 only right 1, p = 1.0000
+seed 46: r16 vs r64: r16 only right 0, r64 only right 4, p = 0.1250
+
+== Resource use (mean over seeds) ==
+r8   params 3407872, time 17.7s, peak VRAM 8.41 GB, adapter 13.0 MiB
+r16  params 6815744, time 17.7s, peak VRAM 8.46 GB, adapter 26.0 MiB
+r32  params 13631488, time 17.7s, peak VRAM 8.48 GB, adapter 52.0 MiB
+r64  params 27262976, time 17.8s, peak VRAM 8.62 GB, adapter 104.0 MiB
